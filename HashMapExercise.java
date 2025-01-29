@@ -1,10 +1,13 @@
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class HashMapExercise {
     public static void main(String[] args) throws Exception {
         System.out.println(findFirstNonRepeatingChar("a green apple"));
+        System.out.println(findFirstRepeatedChar("a green apple"));
 
     }
 
@@ -18,6 +21,17 @@ public class HashMapExercise {
             if (map.get(ch) == 1) {
                 return ch;
             }
+        }
+        return Character.MIN_VALUE;
+    }
+
+    public static char findFirstRepeatedChar(String str) {
+        Set<Character> set = new HashSet<>();
+        for (var ch : str.toCharArray()) {
+            if (set.contains(ch)) {
+                return ch;
+            }
+            set.add(ch);
         }
         return Character.MIN_VALUE;
     }
