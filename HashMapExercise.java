@@ -55,7 +55,7 @@ class HashTable {
         }
     }
 
-    private LinkedList<Entry>[] entries = new LinkedList[5];
+    private LinkedList<Entry>[] entries = new LinkedList[6];
 
     public void put(int key, String value) {
         var index = hash(key);
