@@ -9,7 +9,7 @@ public class HashMapExercise {
     public static void main(String[] args) throws Exception {
         System.out.println(findFirstNonRepeatingChar("a green apple"));
         System.out.println(findFirstRepeatedChar("a green apple"));
-        
+
         HashTable table = new HashTable();
         table.put(6, "A");
         table.put(8, "B");
@@ -80,6 +80,20 @@ class HashTable {
             }
         }
         return null;
+    }
+
+    public void remove(int key) {
+        var index = hash(key);
+        if (entries[index] == null) {
+            throw new IllegalStateException();
+        }
+        for (var entry : entries[index]) {
+            if (entry.key == key) {
+                entries[index].remove(entry);
+                return;
+            }
+        }
+        throw new IllegalStateException();
     }
 
     private int hash(int key) {
