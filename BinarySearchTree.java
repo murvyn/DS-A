@@ -8,6 +8,9 @@ public class BinarySearchTree {
         tree.insert(8);
         tree.insert(18);
 
+        tree.traversePreOrder();
+        tree.traverseInOrder();
+
         System.out.println(tree.find(10));
     }
 }
@@ -65,5 +68,37 @@ class Tree {
                 current = current.rightChild;
             }
         }}
-        
+       
+    public void traversePreOrder () {
+        traversePreOrder(root);
+    }
+
+    private void traversePreOrder (Node root) {
+        if(root == null) return;
+        System.out.println(root.value);
+        traversePreOrder(root.leftChild);
+        traversePreOrder(root.rightChild);
+    }
+    
+    public void traverseInOrder () {
+        traverseInOrder(root);
+    }
+
+    private void traverseInOrder (Node root) {
+        if(root == null) return;
+        traverseInOrder(root.leftChild);
+        System.out.println(root.value);
+        traverseInOrder(root.rightChild);
+    }
+    
+    public void traversePostOrder () {
+        traversePostOrder(root);
+    }
+
+    private void traversePostOrder (Node root) {
+        if(root == null) return;
+        traversePostOrder(root.leftChild);
+        traversePostOrder(root.rightChild);
+        System.out.println(root.value);
+    }
     }
