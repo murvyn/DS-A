@@ -10,6 +10,7 @@ public class BinarySearchTree {
 
         tree.traversePreOrder();
         tree.traverseInOrder();
+        tree.traversePostOrder();
 
         System.out.println(tree.find(10));
     }
