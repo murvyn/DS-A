@@ -26,7 +26,7 @@ class Tree {
         }
         @Override
         public String toString() {
-            return "Node=" + value;
+            return "Node =" + value;
         }
     }
 
