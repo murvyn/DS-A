@@ -88,17 +88,35 @@ class Tree {
     }
 
     private int height(Node root) {
-        if (root == null) return -1;
+        if (root == null)
+            return -1;
         if (isLeaf(root))
             return 0;
         return 1 + Math.max(height(root.leftChild), height(root.rightChild));
     }
+
     public void min() {
         min(root);
     }
 
+    public boolean equals(Tree other) {
+        if (other.root == null) return false;
+        return equals(root, other.root);
+    }
+
+    private boolean equals(Node first, Node second) {
+        if (first == null && second == null)
+            return true;
+        if (first != null && second != null) {
+            return first.value == second.value && equals(first.leftChild, second.leftChild)
+                    && equals(first.rightChild, second.rightChild);
+        }
+        return false;
+    }
+
     private int min(Node root) {
-        if (root == null) return -1;
+        if (root == null)
+            return -1;
         if (isLeaf(root))
             return root.value;
         var left = min(root.leftChild);
