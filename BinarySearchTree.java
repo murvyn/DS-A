@@ -70,7 +70,8 @@ class Tree {
             }
         }}
        
-    public void traversePreOrder () {
+ 
+        public void traversePreOrder () {
         traversePreOrder(root);
     }
 
