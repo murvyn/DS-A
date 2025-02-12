@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 
-
 public class BinarySearchTree {
     public static void main(String[] args) {
         Tree tree = new Tree();
@@ -11,11 +10,13 @@ public class BinarySearchTree {
         tree.insert(8);
         tree.insert(18);
 
-        tree.traversePreOrder();
-        tree.traverseInOrder();
-        tree.traversePostOrder();
+        // tree.traversePreOrder();
+        // tree.traverseInOrder();
+        // tree.traversePostOrder();
 
-        System.out.println(tree.find(10));
+        // System.out.println(tree.find(10));
+        // System.out.println(tree.contains(1));
+        System.out.println(tree.max());
     }
 }
 
@@ -35,6 +36,35 @@ class Tree {
     }
 
     private Node root;
+
+    public int max() {
+        return max(root);
+    }
+
+    private int max(Node root) {
+        if (root == null)
+            return -1;
+        if (isLeaf(root))
+            return root.value;
+        var left = max(root.leftChild);
+        var right = max(root.rightChild);
+        return Math.max(Math.max(left, right), root.value);
+    }
+    
+    public boolean contains(int value) {
+        return contains(root, value);
+    }
+
+    private boolean contains(Node root, int value) {
+        if (root == null) return false;
+        if (root.value == value)
+            return true;
+        if (value < root.value)
+            return contains(root.leftChild, value);
+        if (value > root.value)
+            return contains(root.rightChild, value);
+        return false;
+    }
 
     public boolean find(int value) {
         var current = root;
@@ -97,24 +127,26 @@ class Tree {
             return 0;
         return 1 + Math.max(height(root.leftChild), height(root.rightChild));
     }
-    
+
     public boolean equals(Tree other) {
-        if (other.root == null) return false;
+        if (other.root == null)
+            return false;
         return equals(root, other.root);
     }
 
-    public ArrayList<Integer> getNodesAtDistance(int distance){
+    public ArrayList<Integer> getNodesAtDistance(int distance) {
         var list = new ArrayList<Integer>();
         getNodesAtDistance(root, distance, list);
         return list;
     }
 
-    private void getNodesAtDistance (Node root, int distance, ArrayList<Integer> list) {
-        if(root == null) return;
-        if(distance == 0){
+    private void getNodesAtDistance(Node root, int distance, ArrayList<Integer> list) {
+        if (root == null)
+            return;
+        if (distance == 0) {
             list.add(root.value);
             return;
-        } 
+        }
         var newDistance = distance - 1;
         getNodesAtDistance(root.leftChild, newDistance, list);
         getNodesAtDistance(root.rightChild, newDistance, list);
@@ -130,22 +162,23 @@ class Tree {
         return false;
     }
 
-    public boolean isBinarySearchTree () {
+    public boolean isBinarySearchTree() {
         return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    private boolean isBinarySearchTree (Node root, int min, int max) {
-        if (root == null) return true;
+    private boolean isBinarySearchTree(Node root, int min, int max) {
+        if (root == null)
+            return true;
         if (root.value < min || root.value > max) {
             return false;
         }
-        return isBinarySearchTree(root.leftChild, min, root.value -1) && isBinarySearchTree(root.rightChild,root.value + 1, max);
+        return isBinarySearchTree(root.leftChild, min, root.value - 1)
+                && isBinarySearchTree(root.rightChild, root.value + 1, max);
     }
 
     public void min() {
         min(root);
     }
-
 
     private int min(Node root) {
         if (root == null)
