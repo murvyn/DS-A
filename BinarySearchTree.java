@@ -1,4 +1,8 @@
 
+import java.lang.classfile.components.ClassPrinter;
+import java.util.ArrayList;
+
+
 public class BinarySearchTree {
     public static void main(String[] args) {
         Tree tree = new Tree();
@@ -98,6 +102,23 @@ class Tree {
     public boolean equals(Tree other) {
         if (other.root == null) return false;
         return equals(root, other.root);
+    }
+
+    public ArrayList<Integer> getNodesAtDistance(int distance){
+        var list = new ArrayList<Integer>();
+        getNodesAtDistance(root, distance, list);
+        return list;
+    }
+
+    private void getNodesAtDistance (Node root, int distance, ArrayList<Integer> list) {
+        if(root == null) return;
+        if(distance == 0){
+            list.add(root.value);
+            return;
+        } 
+        var newDistance = distance - 1;
+        getNodesAtDistance(root.leftChild, newDistance, list);
+        getNodesAtDistance(root.rightChild, newDistance, list);
     }
 
     private boolean equals(Node first, Node second) {
