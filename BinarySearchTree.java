@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BinarySearchTree {
     public static void main(String[] args) {
@@ -17,6 +18,8 @@ public class BinarySearchTree {
         // System.out.println(tree.find(10));
         // System.out.println(tree.contains(1));
         System.out.println(tree.max());
+        System.out.println(tree.getAncestors(18));
+        System.out.println(tree.getAncestorsWithRecursion((18)));
     }
 }
 
@@ -36,6 +39,43 @@ class Tree {
     }
 
     private Node root;
+
+    public ArrayList<Integer> getAncestorsWithRecursion (int value) {
+        var ancestors = new ArrayList<Integer>();
+        getAncestorsWithRecursion(root, value, ancestors);
+        return ancestors;
+    }
+
+    private boolean getAncestorsWithRecursion (Node root, int value, ArrayList<Integer> ancestors) {
+        if (root == null) return false; // Base case: node doesn't exist
+
+        if (root.value == value) return true; // Stop when we find the target node
+    
+        if ((value < root.value && getAncestorsWithRecursion(root.leftChild, value, ancestors)) ||
+            (value > root.value && getAncestorsWithRecursion(root.rightChild, value, ancestors))) {
+            ancestors.add(root.value); // Add ancestor when backtracking
+            return true;
+        }
+    
+        return false;
+    }
+
+
+    public ArrayList<Integer> getAncestors (int value) {
+        var ancestors = new ArrayList<Integer>();
+        while (root != null) {
+if (value < root.value){
+                ancestors.add(root.value);
+                root = root.leftChild;
+            }else if (value > root.value){
+                ancestors.add(root.value);
+                root = root.rightChild;
+            }else {
+                break;
+            }
+        }
+        return ancestors;
+    }
 
     public int max() {
         return max(root);
