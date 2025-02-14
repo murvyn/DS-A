@@ -40,9 +40,7 @@ class AVLTree {
         } else {
             root.rightChild = insert(value, root.rightChild);
         }
-        
         setHeight(root);
-
         return balance(root);
     }
 
