@@ -61,13 +61,10 @@ class AVLTree {
 
     private AVLNode rotateLeft(AVLNode root) {
         var newRoot = root;
-
         root.rightChild = newRoot.leftChild;
         newRoot.leftChild = root;
-
         setHeight(newRoot);
         setHeight(root);
-
         return newRoot;
     }
 
