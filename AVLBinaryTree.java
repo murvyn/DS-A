@@ -66,7 +66,6 @@ class AVLTree {
         setHeight(newRoot);
         setHeight(root);
         return newRoot;
-        
     }
 
     private AVLNode rotateRight(AVLNode root) {
