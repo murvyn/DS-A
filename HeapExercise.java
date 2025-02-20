@@ -5,7 +5,8 @@ public class HeapExercise {
     }
 
     public static void heapify(int[] array) {
-        for (int i = 0; i < array.length; i++) {
+        var  lastParentIndex = array.length / 2 - 1;
+        for (int i = lastParentIndex; i >= 0; i--) {
             answer(array, i);
         }
     }
@@ -14,7 +15,7 @@ public class HeapExercise {
         var largestIndex = index;
 
         var leftIndex = 2 * index + 1;
-        if(leftIndex < array.length && array[leftIndex] > array[arraylargestIndex]) {
+        if(leftIndex < array.length && array[leftIndex] > array[largestIndex]) {
             largestIndex = leftIndex;
         }
 
