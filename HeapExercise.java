@@ -1,7 +1,7 @@
 
 public class HeapExercise {
     public static void main(String[] args) {
-
+        //find kth largest item
     }
 
     public static void heapify(int[] array) {
