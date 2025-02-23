@@ -4,10 +4,17 @@ import java.util.List;
 
 public class TrieExercise {
     public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("hello");
-        trie.insert("world");
-        trie.insert("apple");
+        List<String> test = new ArrayList<>();
+        test.add("car");
+        // test.add("dog");
+
+        Longest trie = new Longest();
+
+        for(var word : test){
+            trie.insert(word);
+        }
+
+        System.out.print(trie.longest());
     }
 }
 
@@ -119,8 +126,8 @@ class Trie {
         if (root == null) {
             return;
         }
-        
-        if(root.isEndOfWord) {
+
+        if (root.isEndOfWord) {
             words.add(prefix);
         }
 
@@ -162,5 +169,51 @@ class Trie {
             postOrderTraverse(child);
         }
         System.out.println(root.value);
+    }
+}
+
+class Longest {
+    private class Node {
+        private char value;
+        private HashMap<Character, Node> children = new HashMap<>();
+        private boolean isEndOfWord;
+
+        public Node(char value) {
+            this.value = value;
+        }
+
+        public Node[] getChildren() {
+            return children.values().toArray(new Node[0]);
+        }
+    }
+
+    private Node root = new Node(' ');
+
+    public void insert(String word) {
+        var current = root;
+        for (var ch : word.toCharArray()) {
+            if (current.children.get(ch) == null) {
+                current.children.put(ch, new Node(ch));
+            }
+            current = current.children.get(ch);
+        }
+        current.isEndOfWord = true;
+    }
+    public String longest() {
+        StringBuilder sb = new StringBuilder();
+        longest(root, sb);
+        return sb.toString();
+    }
+
+    private void longest(Node root, StringBuilder sb) {
+        sb.append(root.value);
+
+        if(root.getChildren().length > 1 || root.isEndOfWord){
+            return;
+        }
+
+        for(var child : root.getChildren()) {
+            longest(child, sb);
+        }
     }
 }
