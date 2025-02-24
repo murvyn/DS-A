@@ -12,9 +12,13 @@ public class GraphExercise {
 
 class Graph {
     private class Node {
-        private String label;
+        private final String label;
         public Node(String label) {
             this.label = label;
+        }
+        @Override
+        public String toString() {
+            return label;
         }
     }
 
@@ -39,5 +43,14 @@ class Graph {
         }
 
         adjacentNodes.get(fromNode).add(toNode);
+    }
+
+    public void print() {
+        for (var source : adjacentNodes.keySet()){
+            var targets = adjacentNodes.get(source);
+            if(!targets.isEmpty()){
+                System.out.print(source + " is connected to " + targets);
+            }
+        }
     }
 }
