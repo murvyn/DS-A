@@ -150,6 +150,34 @@ class Graph {
         }
     }
 
+    public List<String> topologicalSort() {
+        Stack<Node> stack = new Stack<>();
+        Set<Node> visited = new HashSet<>();
+
+        for (var node : nodes.values()) {
+            topologicalSort(node, stack, visited);
+        }
+
+        List<String> result = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            result.add(stack.pop().label);
+        }
+        return result;
+    }
+
+    private void topologicalSort(Node node, Stack<Node> stack, Set<Node> visited) {
+        if (visited.contains(node)) {
+            return;
+        }
+        visited.add(node);
+
+        for (var neighbors : adjacentNodes.get(node)) {
+            topologicalSort(neighbors, stack, visited);
+        }
+
+        stack.push(node);
+    }
+
     public void print() {
         for (var source : adjacentNodes.keySet()) {
             var targets = adjacentNodes.get(source);
