@@ -28,7 +28,6 @@ class Graph {
             return label;
         }
     }
-
     private final Map<String, Node> nodes = new HashMap<>();
     private final Map<Node, List<Node>> adjacentNodes = new HashMap<>();
 
