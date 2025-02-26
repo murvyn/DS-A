@@ -17,6 +17,7 @@ public class GraphExercise {
 
 class Graph {
     private class Node {
+        
         private final String label;
 
         public Node(String label) {
