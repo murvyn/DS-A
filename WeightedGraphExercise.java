@@ -153,6 +153,36 @@ class WeightedGraph {
         return path;
     }
 
+    public WeightedGraph getMinimumSpanningTree() {
+        var tree = new WeightedGraph();
+        if(nodes.isEmpty()) return tree;
+        PriorityQueue<Edge> edges = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+
+        var startNode = nodes.values().iterator().next();
+        edges.addAll(startNode.getEdges());
+        tree.addNode(startNode.label);
+
+        while (tree.nodes.size() < nodes.size()) {
+            var minEdge = edges.remove();
+            if (containsNode(minEdge.to.label)) {
+                continue;
+            }
+            tree.addNode(minEdge.to.label);
+            tree.addEdge(minEdge.from.label, minEdge.to.label, minEdge.weight);
+            for (var edge : minEdge.to.getEdges()) {
+                if (!tree.containsNode(minEdge.to.label)) {
+                    edges.add(edge);
+                }
+            }
+        }
+
+        return tree;
+    }
+
+    public boolean containsNode(String minEdge) {
+        return nodes.containsKey(minEdge);
+    }
+
     public boolean hasCycle() {
         Set<Node> visited = new HashSet<>();
 
