@@ -64,7 +64,7 @@ class Tree {
     public ArrayList<Integer> getAncestors (int value) {
         var ancestors = new ArrayList<Integer>();
         while (root != null) {
-if (value < root.value){
+        if (value < root.value){
                 ancestors.add(root.value);
                 root = root.leftChild;
             }else if (value > root.value){
