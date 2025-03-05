@@ -1,7 +1,5 @@
 public class BubbleSort {
-    public static void main (String[] args) {
-
-    }
+    public static void main (String[] args) {}
     public static void sort (int[] items) {
         boolean isSorted;
         for(var i = 0; i < items.length; i++) {
