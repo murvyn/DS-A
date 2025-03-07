@@ -1,5 +1,12 @@
+
+import java.util.Arrays;
+
 public class BubbleSort {
-    public static void main (String[] args) {}
+    public static void main (String[] args) {
+        int[] items = {1,5,3,6,7,9,2};
+        sort(items);
+        System.out.println(Arrays.toString(items));
+    }
     public static void sort (int[] items) {
         boolean isSorted;
         for(var i = 0; i < items.length; i++) {
