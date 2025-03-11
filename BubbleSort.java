@@ -21,6 +21,7 @@ public class BubbleSort {
         }
     }
     
+
     private static void swap(int[] items, int index1, int index2) {
         var temp = items[index1];
         items[index1] = items[index2];
