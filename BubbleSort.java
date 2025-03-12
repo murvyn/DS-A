@@ -11,13 +11,13 @@ public class BubbleSort {
         boolean isSorted;
         for(var i = 0; i < items.length; i++) {
             isSorted = true;
-            for(var j = 0; j < items.length - i; j++) {
-                if(items[j] < items[i]) {
+            for(var j = 1; j < items.length - i; j++) {
+                if(items[j] < items[j-1]) {
                     swap(items, j, j-1);
                     isSorted = false;
                 }
-                if(isSorted) return;
             }
+            if(isSorted) return;
         }
     }
     
