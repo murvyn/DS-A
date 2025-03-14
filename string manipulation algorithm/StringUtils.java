@@ -1,6 +1,8 @@
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StringUtils {
     public static int countVowels(String str) {
@@ -49,4 +51,19 @@ public class StringUtils {
         }
         return (str1.length() == str2.length()) && (str1 + str2).contains(str2);
     }
+
+    public static String removeDuplicates(String str) {
+        StringBuilder output =  new StringBuilder();
+        Set<Character> seen = new HashSet<>();
+        for(var ch : str.toCharArray()) {
+            if(!seen.contains(ch)) {
+                seen.add(ch);
+                output.append(ch);
+            }
+        }
+        return output.toString();
+    }
+
 }
+
+
