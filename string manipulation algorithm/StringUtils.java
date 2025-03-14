@@ -32,7 +32,7 @@ public class StringUtils {
         if (sentence == null || sentence.isEmpty()) {
             return "";
         }
-        String[] words = sentence.split("");
+        String[] words = sentence.trim().split("");
         Collections.reverse(Arrays.asList(words));
         return String.join(" ", words);
 
@@ -41,5 +41,12 @@ public class StringUtils {
         // reversed.append(words[i] + " ");
         // }
         // return reversed.toString().trim();
+    }
+
+    public static boolean areRotations(String str1, String str2) {
+        if (str1 == null || str2 == null || str1.isEmpty() || str2.isEmpty()) {
+            return false;
+        }
+        return (str1.length() == str2.length()) && (str1 + str2).contains(str2);
     }
 }
