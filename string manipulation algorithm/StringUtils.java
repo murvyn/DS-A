@@ -56,10 +56,10 @@ public class StringUtils {
         if (str == null || str.isEmpty()) {
             return "";
         }
-        StringBuilder output =  new StringBuilder();
+        StringBuilder output = new StringBuilder();
         Set<Character> seen = new HashSet<>();
-        for(var ch : str.toCharArray()) {
-            if(!seen.contains(ch)) {
+        for (var ch : str.toCharArray()) {
+            if (!seen.contains(ch)) {
                 seen.add(ch);
                 output.append(ch);
             }
@@ -67,6 +67,25 @@ public class StringUtils {
         return output.toString();
     }
 
+    public static char getMaxOccuringChar(String str) {
+        if (str == null || str.isEmpty()) {
+            return' ';
+        }
+        final int ACII_SIZE = 256;
+        int[] frequencies = new int[ACII_SIZE];
+        for (var ch : str.toCharArray()) {
+            frequencies[ch]++;
+        }
+
+        int max = 0;
+        char results = ' ';
+        for (int i = 0; i < frequencies.length; i++) {
+            if (frequencies[i] > max) {
+                max = frequencies[i];
+                results = (char) i;
+            }
+        }
+        return results;
+    }
+
 }
-
-
