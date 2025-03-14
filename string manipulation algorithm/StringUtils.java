@@ -69,7 +69,7 @@ public class StringUtils {
 
     public static char getMaxOccurringChar(String str) {
         if (str == null || str.isEmpty()) {
-            return' ';
+            return ' ';
         }
         final int ACII_SIZE = 256;
         int[] frequencies = new int[ACII_SIZE];
@@ -93,15 +93,16 @@ public class StringUtils {
             return "";
         }
         String[] words = sentence.trim().replaceAll(" +", " ").split(sentence);
-        for(var i = 0; i < words.length; i++) {
+        for (var i = 0; i < words.length; i++) {
             words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
         }
 
         return String.join(" ", words);
     }
 
-    public static boolean areAnagrams (String first, String second) {
-        if (first == null || second == null || first.isEmpty() || second.isEmpty() || first.length() != second.length()) {
+    public static boolean areAnagrams(String first, String second) {
+        if (first == null || second == null || first.isEmpty() || second.isEmpty()
+                || first.length() != second.length()) {
             return false;
         }
         var array1 = first.toLowerCase().toCharArray();
@@ -112,4 +113,29 @@ public class StringUtils {
 
         return Arrays.equals(array1, array2);
     }
+
+    public static boolean areAnagrams2(String first, String second) {
+        if (first == null || second == null || first.isEmpty() || second.isEmpty()
+                || first.length()!= second.length()) {
+            return false;
+        }
+        final int ENGLISH_ALPHABETHS = 26;
+        int[] frequencies = new int[ENGLISH_ALPHABETHS];
+
+        first = first.toLowerCase();
+        for (var i = 0; i < first.length(); i++) {
+            frequencies[first.charAt(i) - 'a']++;
+        }
+
+        second = second.toLowerCase();
+        for (var i = 0; i < second.length(); i++) {
+            var index = second.charAt(i) - 'a';
+            if (frequencies[index] == 0) {
+                return false;
+            }
+            frequencies[index]--;
+        }
+        return true;
+    }
+
 }
