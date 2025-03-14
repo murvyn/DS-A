@@ -67,7 +67,7 @@ public class StringUtils {
         return output.toString();
     }
 
-    public static char getMaxOccuringChar(String str) {
+    public static char getMaxOccurringChar(String str) {
         if (str == null || str.isEmpty()) {
             return' ';
         }
@@ -88,4 +88,15 @@ public class StringUtils {
         return results;
     }
 
+    public static String capitalize(String sentence) {
+        if (sentence == null || sentence.trim().isEmpty()) {
+            return "";
+        }
+        String[] words = sentence.trim().replaceAll(" +", " ").split(sentence);
+        for(var i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
+        }
+
+        return String.join(" ", words);
+    }
 }
