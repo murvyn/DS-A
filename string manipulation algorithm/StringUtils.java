@@ -53,6 +53,9 @@ public class StringUtils {
     }
 
     public static String removeDuplicates(String str) {
+        if (str == null || str.isEmpty()) {
+            return "";
+        }
         StringBuilder output =  new StringBuilder();
         Set<Character> seen = new HashSet<>();
         for(var ch : str.toCharArray()) {
