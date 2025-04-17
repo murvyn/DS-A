@@ -18,7 +18,6 @@ class AVLTree {
         public AVLNode(int value) {
             this.value = value;
         }
-
         @Override
         public String toString() {
             return "Value = " + value;
